@@ -1,0 +1,15 @@
+<h3>Word一覧</h3>
+<% if user_signed_in? %>
+  <% if current_user == @user || current_user.admin? %>
+    <%= link_to "新規登録", new_word_path %>
+  <% end %>
+<% end %>
+<div class="words-container">
+  <% @words.each do |t| %>
+    <div class="word">
+        <%= t.word %>
+        <%= t.furigana %>
+        <%= link_to "詳細へ", word_path(t.id) %>
+    </div>
+  <% end %>
+</div>

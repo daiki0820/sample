@@ -1,0 +1,19 @@
+<h3>word編集</h3>
+<%= form_for @word do |f| %>
+    <div class="field">
+        <%= f.label :word %>
+        <%= f.text_field :word, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :meaning %>
+        <%= f.text_field :meaning, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :furigana %>
+        <%= f.text_field :furigana, :size => 30 %>
+    </div>
+
+    <%= f.submit "Wordを編集する" %>
+<% end %>

@@ -1,0 +1,21 @@
+<h3>新規word</h3>
+<%= form_for @word do |f| %>
+    <div class="field">
+        <%= f.label :word %>
+        <%= f.text_field :word, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :meaning %>
+        <%= f.text_field :meaning, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :furigana %>
+        <%= f.text_field :furigana, :size => 30 %>
+    </div>
+
+    <%= f.submit "Wordを投稿する" %>
+<% end %>
+
+<%= link_to "Word一覧に戻る", words_path %>

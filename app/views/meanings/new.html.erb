@@ -1,0 +1,9 @@
+<h3>新規Meaning</h3>
+<%= form_for @meaning do |f| %>
+  <div class="field">
+    <%= f.label :meaning %>
+    <%= f.text_field :meaning, :size => 140 %>
+  </div>
+  <%= f.submit "投稿する" %>
+<% end %>
+<%= link_to "meaning一覧に戻る", word_path %>

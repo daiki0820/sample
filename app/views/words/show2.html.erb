@@ -1,0 +1,57 @@
+<h3>Word詳細</h3>
+<div class="word">
+    <p><%= @word.word %></p>
+    <p><%= @word.meaning %></p>
+    <p><%= @word.furigana %></p>
+    <% if user_signed_in? && current_user.id == @word.user_id %>  
+        <%= link_to "編集する", edit_word_path(@word.id) %>
+    <% end %>
+</div>
+
+<%# いいね順 %>
+<div class="meaning-wrapper">
+    <h3>意味一覧</h3>
+    <%= link_to "新着順", word_path %>
+    <%= link_to "いいね順", show2_word_path %>
+    <% @rank_meanings.each do |c| %>
+        <div>
+            <%= c.user.name unless c.user.blank? %>
+            <br>
+            <%= c.meaning %>
+            <br>
+            <%= c.created_at.to_s(:datetime_jp) %>
+        </div>
+        <%# 追記いいね機能 %>
+        <% if user_signed_in? %>
+            <% if current_user.already_liked?(c) %>
+                <%= link_to word_meaning_like_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :delete do %>
+                    <i class="fas fa-heart"></i><%= c.likes.count %>
+                <% end %>
+            <% else %>
+                <%= link_to word_meaning_likes_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :post do %>
+                    <i class="far fa-heart"></i><%= c.likes.count %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <i class="far fa-heart"></i><%= c.likes.count %>
+        <% end %>
+        <%# 追記ここまで %>
+        <% if user_signed_in? && current_user.id == c.user_id %> 
+            <%# link_to "編集する", edit_word_meaning_path(word_id: c.word_id, id: c.id) %>
+            <%= button_to "削除する", word_meaning_path(word_id: c.word_id, id: c.id), method: :delete %>
+        <% end %>
+        <br>
+    <% end %>
+</div>
+<%# いいね順ここまで %>
+<% if user_signed_in? %>
+        <%= form_with(model: [@word, @meaning], local: true) do |f| %>
+            <%= f.text_area :meaning %>
+            <%= button_tag type: "submit" do %>
+                <i class="far fa-comments"></i> 意味を投稿する
+            <% end %>
+        <% end %>
+<% end %>
+
+
+<%= link_to "Word一覧に戻る", words_path %>
