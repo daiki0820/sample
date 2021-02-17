@@ -57,3 +57,6 @@ gem 'kaminari'
 group :production do
   gem 'pg'
 end
+
+gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'jquery-rails'
