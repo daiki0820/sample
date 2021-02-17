@@ -1,48 +1,50 @@
-<h3>Word詳細</h3>
-<div class="word">
-    <p><%= @word.word %></p>
-    <p><%= @word.meaning %></p>
-    <p><%= @word.furigana %></p>
+<%= javascript_pack_tag 'words' %>
+<div class="box">
+    <div class="item">
+        <div class="word">
+            <h1><%= @word.word %></h1>
+            <p><%= @word.furigana %></p>
+        </div>
+        <div class="meaning">
+            <p><%= @word.meaning %></p>
+        </div>
+    </div>
     <% if user_signed_in? && current_user.id == @word.user_id %>  
         <%= link_to "編集する", edit_word_path(@word.id) %>
     <% end %>
 </div>
 
 <%# 投稿順 %>
-<div class="meaning-wrapper">
-    <h3>意味一覧</h3>
-    <%= link_to "新着順", word_path %>
-    <%= link_to "いいね順", show2_word_path %>
+<%= link_to "新着順", word_path %>
+<%= link_to "いいね順", show2_word_path %>
+<div class="box">
     <% @meanings.each do |c| %>
-        <div>
-            <%= c.user.name unless c.user.blank? %>
-            <br>
-            <%= c.meaning %>
-            <br>
-            <%= c.created_at.to_s(:datetime_jp) %>
-        </div>
-        <%# 追記いいね機能 %>
-        <% if user_signed_in? %>
-            <% if current_user.already_liked?(c) %>
-                <%= link_to word_meaning_like_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :delete do %>
-                    <i class="fas fa-heart"></i><%= c.likes.count %>
-                <% end %>
-            <% else %>
-                <%= link_to word_meaning_likes_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :post do %>
+            <div class="item meaning-item">
+                <p class="user-name"><%= c.user.name unless c.user.blank? %></p>
+                <p><%= c.meaning %></p>
+                <%# 追記いいね機能 %>
+                <% if user_signed_in? %>
+                    <% if current_user.already_liked?(c) %>
+                        <%= link_to word_meaning_like_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :delete do %>
+                            <i class="fas fa-heart"></i><%= c.likes.count %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to word_meaning_likes_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :post do %>
+                            <i class="far fa-heart"></i><%= c.likes.count %>
+                        <% end %>
+                    <% end %>
+                <% else %>
                     <i class="far fa-heart"></i><%= c.likes.count %>
                 <% end %>
-            <% end %>
-        <% else %>
-            <i class="far fa-heart"></i><%= c.likes.count %>
-        <% end %>
-        <%# 追記ここまで %>
-        <% if user_signed_in? && current_user.id == c.user_id %> 
-            <%# link_to "編集する", edit_word_meaning_path(word_id: c.word_id, id: c.id) %>
-            <%= button_to "削除する", word_meaning_path(word_id: c.word_id, id: c.id), method: :delete %>
-        <% end %>
-        <br>
+                <%# 追記ここまで %>
+                <% if user_signed_in? && current_user.id == c.user_id %> 
+                    <%# link_to "編集する", edit_word_meaning_path(word_id: c.word_id, id: c.id) %>
+                    <%= button_to "削除する", word_meaning_path(word_id: c.word_id, id: c.id), method: :delete %>
+                <% end %>
+            </div>
     <% end %>
 </div>
+
 <%# 投稿順ここまで %>
 
 

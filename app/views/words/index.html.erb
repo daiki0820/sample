@@ -1,15 +1,26 @@
-<h3>Word一覧</h3>
+<%= javascript_pack_tag 'words' %>
+<div class="container-fluid">
+  <img src="/assets/title_logo.png" class="container d-block mx-auto" alt="">
+</div>
 <% if user_signed_in? %>
   <% if current_user == @user || current_user.admin? %>
     <%= link_to "新規登録", new_word_path %>
   <% end %>
 <% end %>
-<div class="words-container">
-  <% @words.each do |t| %>
-    <div class="word">
-        <%= t.word %>
-        <%= t.furigana %>
-        <%= link_to "詳細へ", word_path(t.id) %>
-    </div>
+<div class="box">
+  <% @words.each do |t| %>     
+      <div class="item">
+        <%= link_to (word_path(t.id)) do %>
+          <div class="word">
+            <h1><%= t.word %></h1>
+            <p><%= t.furigana %></p>
+          </div>
+          <div class="meaning">
+            <%= t.meaning %>
+          </div>
+        <% end %>
+      </div>          
   <% end %>
 </div>
+<%#= page_entries_info @words %>
+<%= paginate @words %>

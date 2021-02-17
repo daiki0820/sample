@@ -1,14 +1,36 @@
 {
-  "application.js": "/packs/js/application-2f7cf7dc897575787424.js",
-  "application.js.map": "/packs/js/application-2f7cf7dc897575787424.js.map",
+  "application.js": "/packs/js/application-d1f242863593ae01f260.js",
+  "application.js.map": "/packs/js/application-d1f242863593ae01f260.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-2f7cf7dc897575787424.js"
+        "/packs/js/application-d1f242863593ae01f260.js"
       ],
       "js.map": [
-        "/packs/js/application-2f7cf7dc897575787424.js.map"
+        "/packs/js/application-d1f242863593ae01f260.js.map"
+      ]
+    },
+    "users": {
+      "js": [
+        "/packs/js/users-cfb6e198d525aefab25c.js"
+      ],
+      "js.map": [
+        "/packs/js/users-cfb6e198d525aefab25c.js.map"
+      ]
+    },
+    "words": {
+      "js": [
+        "/packs/js/words-630aaa0d9ed040314edb.js"
+      ],
+      "js.map": [
+        "/packs/js/words-630aaa0d9ed040314edb.js.map"
       ]
     }
-  }
+  },
+  "media/images/momizi.jpg": "/packs/media/images/momizi-fb619f47.jpg",
+  "media/images/white.jpg": "/packs/media/images/white-f4dc7b34.jpg",
+  "users.js": "/packs/js/users-cfb6e198d525aefab25c.js",
+  "users.js.map": "/packs/js/users-cfb6e198d525aefab25c.js.map",
+  "words.js": "/packs/js/words-630aaa0d9ed040314edb.js",
+  "words.js.map": "/packs/js/words-630aaa0d9ed040314edb.js.map"
 }

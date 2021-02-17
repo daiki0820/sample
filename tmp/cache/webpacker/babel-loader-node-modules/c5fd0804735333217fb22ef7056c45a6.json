@@ -1,0 +1,1 @@
+{"ast":null,"code":"import '../src/words';","map":{"version":3,"sources":["C:/Users/okada daiki/Desktop/rails_app/app/javascript/packs/words.js"],"names":[],"mappings":"AAAA,OAAO,cAAP","sourcesContent":["import '../src/words';\r\n"]},"metadata":{},"sourceType":"module"}

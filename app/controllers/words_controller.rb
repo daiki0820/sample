@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
     def index
-        @words = Word.all
+        @words = Word.all.page(params[:page]).per(9)
     end
 
     def new
@@ -44,6 +44,12 @@ class WordsController < ApplicationController
         else
           redirect_to :action => "edit"
         end
+    end
+
+    def destroy
+        word = Word.find(params[:id])
+        word.destroy
+        redirect_to action: :index
     end
 
     private

@@ -17,4 +17,8 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap';
-import '../stylesheets/application';
+import '../src/application';
+
+//= require jquery3
+//= require popper
+//= require bootstrap

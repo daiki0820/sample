@@ -17,3 +17,4 @@
 
     <%= f.submit "Wordを編集する" %>
 <% end %>
+<%= button_to "削除する", word_path(@word.id), method: :delete %>
