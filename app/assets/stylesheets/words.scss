@@ -1,3 +1,75 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// index
+.container-fluid{
+    background-image:url(../../assets/images/momizi.jpg) ;
+    padding: 5% 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+
+.box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    background-image:url(../../assets/images/white.jpg) ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box a:hover { color: gray } 
+
+
+.item{
+    width:30%;
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    margin:1% 0;
+}
+
+.word{
+    text-align: center;
+}
+
+.word h1{
+    margin-bottom: 0;
+    color: black;
+}
+
+.word p{
+    color:gray;
+    margin-bottom: 0;
+}
+
+.meaning{
+    text-align: center;
+    color: black;
+}
+
+.pagination{
+    justify-content: center;
+    background-image:url(../../assets/images/white.jpg) ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page{
+    margin:0 0.5%;
+}
+
+// meaning
+.meaning-item{
+    justify-content: space-between;
+}
+
+.user-name{
+    font-weight: bold;
+}
