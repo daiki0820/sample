@@ -37,7 +37,7 @@
     <% @meanings.each do |c| %>
             <div class="item meaning-item">
                 <p class="user-name"><%= c.user.name unless c.user.blank? %></p>
-                <p><%= c.meaning %></p>
+                <p class="user-meaning"><%= c.meaning %></p>
                 <p class="text-secondary"><%= time_ago_in_words(c.created_at) %></p>
                 <%# 追記いいね機能 %>
                 <% if user_signed_in? %>
@@ -55,7 +55,7 @@
                 <% end %>
                 <%# 追記ここまで %>
                 <% if user_signed_in? && current_user.id == c.user_id %> 
-                    <%# link_to "編集する", edit_word_meaning_path(word_id: c.word_id, id: c.id) %>
+                    <%= link_to "編集する", edit_word_meaning_path(word_id: c.word_id, id: c.id) %>
                     <%= button_to "削除する", word_meaning_path(word_id: c.word_id, id: c.id), method: :delete %>
                 <% end %>
             </div>
