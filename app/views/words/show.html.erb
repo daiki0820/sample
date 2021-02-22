@@ -1,6 +1,7 @@
 <%#= javascript_pack_tag 'words' %>
 <%= stylesheet_link_tag 'words', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="box">
+
+<div class="box meaning-box">
     <div class="item">
         <div class="word">
             <h1><%= @word.word %></h1>
@@ -10,27 +11,42 @@
             <p><%= @word.meaning %></p>
         </div>
     </div>
+    <% if user_signed_in? %>
+    <div class="form-box">
+        <%= form_with(model: [@word, @meaning], local: true) do |f| %>
+            <%= f.text_area :meaning %>
+            <%= button_tag type: "submit" do %>
+                <i class="far fa-comments"></i> 意味を投稿する
+            <% end %>
+        <% end %>
+    </div>      
+<% end %>
     <% if user_signed_in? && current_user.id == @word.user_id %>  
         <%= link_to "編集する", edit_word_path(@word.id) %>
     <% end %>
 </div>
 
+
 <%# 投稿順 %>
-<%= link_to "新着順", word_path %>
-<%= link_to "いいね順", show2_word_path %>
+<div class="ine-order">
+    <%= link_to "新着順", word_path %>
+    <%= link_to "いいね順", show2_word_path %>
+</div>
+
 <div class="box">
     <% @meanings.each do |c| %>
             <div class="item meaning-item">
                 <p class="user-name"><%= c.user.name unless c.user.blank? %></p>
                 <p><%= c.meaning %></p>
+                <p class="text-secondary"><%= time_ago_in_words(c.created_at) %></p>
                 <%# 追記いいね機能 %>
                 <% if user_signed_in? %>
                     <% if current_user.already_liked?(c) %>
-                        <%= link_to word_meaning_like_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :delete do %>
+                        <%= button_to word_meaning_like_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :delete, class:"like" do %>
                             <i class="fas fa-heart"></i><%= c.likes.count %>
                         <% end %>
                     <% else %>
-                        <%= link_to word_meaning_likes_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :post do %>
+                        <%= button_to word_meaning_likes_path(id: c.id, word_id: c.word_id, meaning_id: c.id), method: :post do %>
                             <i class="far fa-heart"></i><%= c.likes.count %>
                         <% end %>
                     <% end %>
@@ -48,16 +64,10 @@
 
 <%# 投稿順ここまで %>
 
+<%= paginate @meanings %>
+
+<div class="index-link">
+    <%= link_to "Word一覧に戻る", words_path %>
+</div>
 
 
-<% if user_signed_in? %>
-        <%= form_with(model: [@word, @meaning], local: true) do |f| %>
-            <%= f.text_area :meaning %>
-            <%= button_tag type: "submit" do %>
-                <i class="far fa-comments"></i> 意味を投稿する
-            <% end %>
-        <% end %>
-<% end %>
-
-
-<%= link_to "Word一覧に戻る", words_path %>

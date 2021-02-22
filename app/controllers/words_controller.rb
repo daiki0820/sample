@@ -19,7 +19,7 @@ class WordsController < ApplicationController
     
     def show
         @word = Word.find(params[:id])
-        @meanings = @word.meanings.order(created_at: :desc)
+        @meanings = @word.meanings.order(created_at: :desc).all.page(params[:page]).per(9)
         @meaning = Meaning.new
         #いいねランキング 
         @rank_meanings = @word.meanings.sort {|a,b| b.liked_users.count <=> a.liked_users.count}
@@ -27,10 +27,11 @@ class WordsController < ApplicationController
 
     def show2
         @word = Word.find(params[:id])
-        @meanings = @word.meanings.order(created_at: :desc)
+        @meanings = @word.meanings.order(created_at: :desc).all.page(params[:page]).per(9)
         @meaning = Meaning.new
         #いいねランキング 
         @rank_meanings = @word.meanings.sort {|a,b| b.liked_users.count <=> a.liked_users.count}
+        @rank_meanings = Kaminari.paginate_array(@rank_meanings).page(params[:page]).per(9)
     end
 
     def edit

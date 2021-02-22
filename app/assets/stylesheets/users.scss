@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.container{
-    background-image: url(momizi.jpg);
+.user-form{
+    background-image: url(white.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,4 +15,35 @@
     max-width: 330px;
     padding: 15px;
     margin: auto;   
+    background-image:url(white.jpg) ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+// show
+.user-box{
+    margin:1% 1%;
+    background-image: url(white.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    text-align: center;
+}
+
+.user-box h2{
+    border-top:solid  gray ;
+    margin:1% 0;
+    padding-top: 1%;
+}
+
+// edit
+.edit-box{
+    text-align: center;
+    background-image: url(white.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
 }

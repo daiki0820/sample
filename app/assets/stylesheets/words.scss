@@ -4,7 +4,7 @@
 
 // index
 .container-fluid{
-    background-image:url("momizi.jpg") ;
+    background-image:url(fuji.jpg) ;
     padding: 5% 0;
     background-position: center center;
     background-repeat: no-repeat;
@@ -20,6 +20,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    align-items: center;
 }
 
 .box a:hover { color: gray } 
@@ -66,10 +67,34 @@
 }
 
 // meaning
+.meaning-box{
+    background-image:url("momizi.jpg") ;
+}
+
+// .form-box{
+//     text-align: center;
+//     background-image:url("momizi.jpg") ;
+//     background-position: center center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-attachment: fixed; 
+// }
+
+.ine-order{
+    text-align: center;
+    background-image:url(white.jpg) ;
+    margin-bottom: -1%;
+}
+
 .meaning-item{
     justify-content: space-between;
 }
 
 .user-name{
     font-weight: bold;
+}
+
+.index-link{
+    text-align: center;
+    background-image:url(white.jpg) ; 
 }

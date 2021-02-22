@@ -1,24 +1,27 @@
-<h1>users#show</h1>
-<p>名前 : <%= @user.name %></p>
-<p>メールアドレス : <%= @user.email %></p>
-<p>プロフィール : <%= @user.profile %></p>
+<%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="user-box">
+  <p>名前 : <%= @user.name %></p>
+  <p>メールアドレス : <%= @user.email %></p>
+  <p>プロフィール : <%= @user.profile %></p>
 
-<% if current_user.id == @user.id %>
-  <%= link_to "編集する", edit_user_registration_path %>
-<% end %>
+  <% if current_user.id == @user.id %>
+    <%= link_to "編集する", edit_user_registration_path %>
+  <% end %>
+  <h2>投稿一覧</h2>
+  <% @user.meanings.order(created_at: :desc).each do |t| %>
+      <%= t.word.word %> 
+      <br>   
+      <%= t.meaning %>
+      <br>
+      <%= t.created_at.to_s(:datetime_jp) %>
+      <br>
+        <% if user_signed_in? && current_user.id == t.user_id %> 
+          <%# <% link_to "編集する", edit_word_meaning_path(word_id: t.word_id, id: t.id) %>
+          <%= button_to "削除する", word_meaning_path(word_id: t.word_id, id: t.id), method: :delete %>
+        <% end %>
+      <br>
+  <% end %>
 
-<h2>ユーザーの意味投稿一覧</h2>
-<% @user.meanings.order(created_at: :desc).each do |t| %>
-    <%= t.word.word %>    
-    <%= t.meaning %>
-    <%= t.created_at.to_s(:datetime_jp) %>
-      <% if user_signed_in? && current_user.id == t.user_id %> 
-        <%# <% link_to "編集する", edit_word_meaning_path(word_id: t.word_id, id: t.id) %>
-        <%= button_to "削除する", word_meaning_path(word_id: t.word_id, id: t.id), method: :delete %>
-      <% end %>
-    <br>
-<% end %>
-
-
-<br>
-<%= link_to "Word一覧に戻る", words_path %>
+  <br>
+  <%= link_to "Word一覧に戻る", words_path %>
+</div>
